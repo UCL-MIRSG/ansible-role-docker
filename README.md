@@ -1,4 +1,4 @@
-# Role Name
+# mirsg.docker
 
 This role is for installing [docker-ce](https://docs.docker.com/engine/install/) on CentOS7 or RockyLinux8.
 
@@ -22,7 +22,7 @@ Include in a requirements.yml file as follows:
 ```yaml
 roles:
   - src: https://github.com/UCL-MIRSG/ansible-role-docker.git
-    version: v1.0.0
+    version: vx.x.x
     name: mirsg.docker
 ```
 
