@@ -1,0 +1,9 @@
+docker:
+  owner: "root"
+  group: "root"
+  config_dir: "/etc/docker"
+  daemon_conf_file: "/etc/docker/daemon.json"
+  service_file_dir: "/etc/systemd/system/docker.service.d"
+  service_name: "docker"
+  repo_url: "https://download.docker.com/linux/centos/docker-ce.repo"
+  yum_package: "docker"
