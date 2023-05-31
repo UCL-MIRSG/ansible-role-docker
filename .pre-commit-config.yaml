@@ -30,3 +30,4 @@ repos:
     rev: v6.16.2
     hooks:
       - id: ansible-lint
+        args: ["-p", "."]
