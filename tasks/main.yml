@@ -1,8 +1,18 @@
 ---
 - name: Ensure docker dependencies are installed
   ansible.builtin.yum:
-    name: ["yum-utils", "device-mapper-persistent-data", "lvm2", "epel-release"]
+    name: "{{ item }}"
     state: installed
+  loop:
+    - yum-utils
+    - device-mapper-persistent-data
+    - lvm2
+
+- name: Install "epel-release" for centos:7
+  ansible.builtin.yum:
+    name: epel-release
+    state: installed
+  when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 - name: Add Docker repository
   ansible.builtin.command: "yum-config-manager --add-repo={{ docker.repo_url }}"
@@ -11,8 +21,14 @@
 
 - name: Ensure docker is installed
   ansible.builtin.yum:
-    name: ["docker-ce", "docker-ce-cli", "containerd.io"]
+    name: "{{ item }}"
     state: installed
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+    - docker-buildx-plugin
+    - docker-compose-plugin
 
 - name: Ensure docker service directory exists
   ansible.builtin.file:
