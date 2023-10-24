@@ -15,9 +15,9 @@
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
 - name: Add Docker repository
-  ansible.builtin.command: "yum-config-manager --add-repo={{ docker.repo_url }}"
+  ansible.builtin.command: "yum-config-manager --add-repo={{ docker_repo_url }}"
   args:
-    creates: /etc/yum.repos.d/docker.repo
+    creates: /etc/yum.repos.d/docker_repo
 
 - name: Ensure docker is installed
   ansible.builtin.yum:
@@ -32,7 +32,7 @@
 
 - name: Ensure docker service directory exists
   ansible.builtin.file:
-    path: "{{ docker.service_file_dir }}"
+    path: "{{ docker_service_file_dir }}"
     owner: "root"
     group: "root"
     state: directory
@@ -40,8 +40,8 @@
 
 - name: Set custom docker service configuration
   ansible.builtin.template:
-    src: docker.service.j2
-    dest: "{{ docker.service_file_dir }}/docker.conf"
+    src: docker_service.j2
+    dest: "{{ docker_service_file_dir }}/docker_conf"
     owner: "root"
     group: "root"
     mode: "0644"
@@ -52,6 +52,6 @@
 
 - name: Ensure docker daemon is running
   ansible.builtin.service:
-    name: "{{ docker.service_name }}"
+    name: "{{ docker_service_name }}"
     state: started
     enabled: true
