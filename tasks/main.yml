@@ -14,10 +14,20 @@
     state: installed
   when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "7"
 
+- name: Import docker rpm key
+  ansible.builtin.rpm_key:
+    state: present
+    key: "{{ docker_rpm_gpg_key_url }}"
+
 - name: Add Docker repository
-  ansible.builtin.command: "yum-config-manager --add-repo={{ docker.repo_url }}"
-  args:
-    creates: /etc/yum.repos.d/docker.repo
+  ansible.builtin.yum_repository:
+    name: docker
+    description: Docker repo
+    file: docker-ce
+    baseurl: "{{ docker_repo_baseurl }}"
+    gpgcheck: true
+    gpgkey:
+      - "{{ docker_rpm_gpg_key_url }}"
 
 - name: Ensure docker is installed
   ansible.builtin.yum:
@@ -32,7 +42,7 @@
 
 - name: Ensure docker service directory exists
   ansible.builtin.file:
-    path: "{{ docker.service_file_dir }}"
+    path: "{{ docker_service_directory }}"
     owner: "root"
     group: "root"
     state: directory
@@ -40,8 +50,8 @@
 
 - name: Set custom docker service configuration
   ansible.builtin.template:
-    src: docker.service.j2
-    dest: "{{ docker.service_file_dir }}/docker.conf"
+    src: docker.conf.j2
+    dest: "{{ docker_service_directory }}/docker.conf"
     owner: "root"
     group: "root"
     mode: "0644"
@@ -52,6 +62,6 @@
 
 - name: Ensure docker daemon is running
   ansible.builtin.service:
-    name: "{{ docker.service_name }}"
+    name: "{{ docker_service_name }}"
     state: started
     enabled: true

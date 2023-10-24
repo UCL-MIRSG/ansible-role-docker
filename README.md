@@ -1,19 +1,18 @@
 # mirsg.docker
 
-This role is for installing [docker-ce](https://docs.docker.com/engine/install/) on CentOS7 or RockyLinux8.
+This role is for installing [docker-ce](https://docs.docker.com/engine/install/) on CentOS 7 or Rocky Linux 8.
 
 ## Role Variables
 
-All variables are nested in the `docker` dictionary. See [defaults/main.yml](defaults/main.yml).
-
-| Name               | Description                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------------- |
-| `owner`            | The OS user that will have ownership of the Docker service file and directory. Defaults to `root`       |
-| `group`            | The OS group that will have ownership of the Docker service file and directory. Defaults to `root`      |
-| `service_file_dir` | The path to the Docker service. Defaults to `/etc/systemd/system/docker.service.d`                      |
-| `service_name`     | The name of the Docker service. Defaults to `docker`                                                    |
-| `repo_url`         | The url of the Docker repository. Defaults to `https://download.docker.com/linux/centos/docker-ce.repo` |
-| `yum_package`      | The name of the Docker package. Defaults to `docker`                                                    |
+| Name                       | Description                                                                                          |
+| -------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `docker_owner`             | The OS user that will have ownership of the Docker service file and directory. Defaults to `root`    |
+| `docker_group`             | The OS group that will have ownership of the Docker service file and directory. Defaults to `root`   |
+| `docker_service_directory` | The path to the Docker service. Defaults to `/etc/systemd/system/docker.service.d`                   |
+| `docker_service_name`      | The name of the Docker service. Defaults to `docker`                                                 |
+| `docker_rpm_gpg_key_url`   | The url of the Docker repository GPG key. Defaults to `https://download.docker.com/linux/centos/gpg` |
+| `docker_repo_baseurl`      | URL to the directory containing the repodata. Defaults to `https://download.docker.com/linux/centos` |
+| `docker_yum_package`       | The name of the Docker package. Defaults to `docker`                                                 |
 
 ## Installation
 
@@ -22,7 +21,7 @@ Include in a requirements.yml file as follows:
 ```yaml
 roles:
   - src: https://github.com/UCL-MIRSG/ansible-role-docker.git
-    version: vx.x.x
+    version: x.y.z
     name: mirsg.docker
 ```
 
