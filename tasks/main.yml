@@ -50,7 +50,7 @@
 
 - name: Set custom docker service configuration
   ansible.builtin.template:
-    src: docker_service.j2
+    src: docker.conf.j2
     dest: "{{ docker_service_directory }}/docker.conf"
     owner: "root"
     group: "root"
