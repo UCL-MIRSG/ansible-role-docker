@@ -9,7 +9,7 @@ All variables are nested in the `docker` dictionary. See [defaults/main.yml](def
 | Name               | Description                                                                                             |
 | ------------------ | ------------------------------------------------------------------------------------------------------- |
 | `owner`            | The OS user that will have ownership of the Docker service file and directory. Defaults to `root`       |
-| `group`            | The OS group that will have ownership of the Docker service file and directory. Deafults to `root`      |
+| `group`            | The OS group that will have ownership of the Docker service file and directory. Defaults to `root`      |
 | `service_file_dir` | The path to the Docker service. Defaults to `/etc/systemd/system/docker.service.d`                      |
 | `service_name`     | The name of the Docker service. Defaults to `docker`                                                    |
 | `repo_url`         | The url of the Docker repository. Defaults to `https://download.docker.com/linux/centos/docker-ce.repo` |
