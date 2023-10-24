@@ -5,18 +5,10 @@ dependency:
 driver:
   name: docker
 
-scenario:
-  name: centos7
-  test_sequence:
-    - destroy
-    - syntax
-    - create
-    - converge
-    - destroy
-
 platforms:
   - name: instance
     image: centos:7
+    dockerfile: ../resources/Dockerfile.j2
     command: ""
     cgroupns_mode: host
     privileged: true
