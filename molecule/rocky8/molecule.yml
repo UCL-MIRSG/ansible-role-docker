@@ -6,7 +6,7 @@ driver:
   name: docker
 
 platforms:
-  - name: instance
+  - name: server
     image: rockylinux:8
     dockerfile: ../resources/Dockerfile.j2
     command: ""
@@ -21,7 +21,11 @@ provisioner:
   config_options:
     defaults:
       callbacks_enabled: profile_tasks, timer, yaml
+  inventory:
+    links:
+      host_vars: ../resources/inventory/host_vars/
   playbooks:
+    prepare: ./prepare.yml
     converge: ../resources/converge.yml
   env:
     ANSIBLE_VERBOSITY: "1"
