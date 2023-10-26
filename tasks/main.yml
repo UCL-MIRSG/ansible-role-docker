@@ -62,20 +62,20 @@
   notify:
     - Restart docker
   block:
-    - name: Ensure docker config directory exists - {{ docker.config_dir }}
+    - name: Ensure docker config directory exists - {{ docker_config_dir }}
       ansible.builtin.file:
-        path: "{{ docker.config_dir }}"
-        owner: "{{ docker.owner }}"
-        group: "{{ docker.group }}"
+        path: "{{ docker_config_dir }}"
+        owner: "{{ docker_owner }}"
+        group: "{{ docker_group }}"
         state: directory
         mode: "0700"
 
     - name: Write docker daemon configuration file
       ansible.builtin.template:
         src: daemon.json.j2
-        dest: "{{ docker.daemon_conf_file }}"
-        owner: "{{ docker.owner }}"
-        group: "{{ docker.group }}"
+        dest: "{{ docker_daemon_conf_file }}"
+        owner: "{{ docker_owner }}"
+        group: "{{ docker_group }}"
         mode: "0640"
 
     - name: Generate CA certificate
