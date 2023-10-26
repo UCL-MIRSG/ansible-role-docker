@@ -16,7 +16,7 @@ This role is for installing [docker-ce](https://docs.docker.com/engine/install/)
 
 If you would like to [configure](https://docs.docker.com/engine/security/protect-access/#use-tls-https-to-protect-the-docker-daemon-socket)
 your Docker server such that clients can connect to it via TLS, you can also use this role to generate the necessary certificates.
-The following variable can be used to configure certificate creation and signing:
+The following variables can be used to configure certificate creation and signing:
 
 | Name                                        | Description                                                                                                                                    |
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
