@@ -41,6 +41,12 @@ If you have specified a list of clients in `docker_client_hostnames`, the certif
 controller in the folder `docker_client_certificate_cache_directory`. You will then need to copy these certificates to the corresponding
 client.
 
+## Dependencies
+
+You will need to install the following collections before using `mirsg.docker`:
+
+- `community.crypto`
+
 ## Installation
 
 Include in a requirements.yml file as follows:
