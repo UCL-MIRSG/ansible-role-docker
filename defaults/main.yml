@@ -22,6 +22,7 @@ docker_daemon_conf_file: "/etc/docker/daemon.json"
 docker_server_hostname: "{{ ansible_host }}"
 docker_server_ip: "0.0.0.0"
 docker_server_port: "2376"
+docker_tls_verify: true
 
 # mirsg.docker CA certificate
 docker_ca_key: "{{ docker_certificate_directory }}/ca.key"

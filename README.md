@@ -17,7 +17,7 @@ This role is for installing [docker-ce](https://docs.docker.com/engine/install/)
 If you would like to [configure](https://docs.docker.com/engine/security/protect-access/#use-tls-https-to-protect-the-docker-daemon-socket)
 your Docker server such that clients can connect to it via TLS, you can also use this role to generate the necessary certificates.
 The following variables can be used to configure certificate creation and signing:
-
+docker_tls_verify
 | Name                                        | Description                                                                                                                                    |
 | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `docker_generate_certificates`              | If `true`, CA, server, and client certificates will be generated. Defaults to `false`                                                          |
@@ -26,6 +26,7 @@ The following variables can be used to configure certificate creation and signin
 | `docker_daemon_conf_file`                   | Docker daemon configuration filename. Defaults to `/etc/docker/daemon.json`                                                                    |
 | `docker_server_hostname`                    | Hostname of your Docker server. Used for the `commonName` field of the certificate signing request subject. Defaults to `"{{ ansible_host }}"` |
 | `docker_server_ip`                          | IP address of your Docker server. Defaults to `0.0.0.0`                                                                                        |
+| `docker_tls_verify`                         | If `true`, require that TLS certificates can be verified by a root authority. Defaults to `true`                                                                                        |
 | `docker_ca_key`                             | Filename for the CA certificate key. Defaults to `/home/docker/.docker/ca.key`                                                                 |
 | `docker_ca_csr`                             | Filename for the CA certificate signing request. Defaults to `/home/docker/.docker/ca.csr`                                                     |
 | `docker_ca_cert`                            | Filename for the CA certificate. Defaults to `/home/docker/.docker/ca.pem`                                                                     |
