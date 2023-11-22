@@ -25,3 +25,9 @@
     mode: "0400"
   notify:
     - Restart docker
+
+- name: Copy server CA certificate to Ansible Controller cache
+  ansible.builtin.fetch:
+    src: "{{ docker_ca_cert }}"
+    dest: "{{ docker_client_certificate_cache_directory }}/ca.pem"
+    flat: true
